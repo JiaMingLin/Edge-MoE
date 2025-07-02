@@ -7,14 +7,14 @@
 #include "hls_vector.h"
 
 constexpr unsigned int AXI_XFER_BIT_WIDTH = 256;
-constexpr unsigned int FEATURE_BLOCK_SIZE = (AXI_XFER_BIT_WIDTH / fm_t::width);
-constexpr unsigned int NUM_FEATURE_BLOCKS = ceildiv(FEATURE_DIM, FEATURE_BLOCK_SIZE);
+constexpr unsigned int FEATURE_BLOCK_SIZE = (AXI_XFER_BIT_WIDTH / fm_t::width);   //256/32 = 8
+constexpr unsigned int NUM_FEATURE_BLOCKS = ceildiv(FEATURE_DIM, FEATURE_BLOCK_SIZE);   // 192/8 = 24   
 
-constexpr unsigned int LINEAR_IN_SIZE = 2 * FEATURE_BLOCK_SIZE;
-constexpr unsigned int LINEAR_OUT_SIZE = 2 * FEATURE_BLOCK_SIZE;
+constexpr unsigned int LINEAR_IN_SIZE = 2 * FEATURE_BLOCK_SIZE;   // 2*8 = 16
+constexpr unsigned int LINEAR_OUT_SIZE = 2 * FEATURE_BLOCK_SIZE;   // 2*8 = 16
 constexpr unsigned int ATTN_MATMUL_PARALLEL = 4;
 
-typedef hls::vector<fm_t, FEATURE_BLOCK_SIZE> fm_block_t;
+typedef hls::vector<fm_t, FEATURE_BLOCK_SIZE> fm_block_t;    
 typedef fm_block_t fm_blocks_t[NUM_FEATURE_BLOCKS];
 typedef fm_blocks_t patch_blocks_t[NUM_PATCHES];
 

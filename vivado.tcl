@@ -1,4 +1,4 @@
-create_project Edge-MoE vivado_project -part xczu9eg-ffvb1156-2-e
+create_project Edge-MoE vivado_project -part xczu9eg-ffvb1156-2-e -force
 set_property board_part xilinx.com:zcu102:part0:3.4 [current_project]
 set_property  ip_repo_paths  vitis_hls_project/solution1/impl [current_project]
 update_ip_catalog
@@ -6,7 +6,7 @@ create_bd_design "design_1"
 update_compile_order -fileset sources_1
 startgroup
 create_bd_cell -type ip -vlnv xilinx.com:hls:ViT_compute:1.0 ViT_compute_0
-create_bd_cell -type ip -vlnv xilinx.com:ip:zynq_ultra_ps_e:3.4 zynq_ultra_ps_e_0
+create_bd_cell -type ip -vlnv xilinx.com:ip:zynq_ultra_ps_e:3.5 zynq_ultra_ps_e_0
 endgroup
 apply_bd_automation -rule xilinx.com:bd_rule:zynq_ultra_ps_e -config {apply_board_preset "1" }  [get_bd_cells zynq_ultra_ps_e_0]
 set_property -dict [list CONFIG.PSU__USE__S_AXI_GP0 {1} CONFIG.PSU__USE__S_AXI_GP1 {1} CONFIG.PSU__USE__S_AXI_GP2 {1} CONFIG.PSU__USE__S_AXI_GP3 {1} CONFIG.PSU__USE__S_AXI_GP4 {1} CONFIG.PSU__CRL_APB__PL0_REF_CTRL__FREQMHZ {300}] [get_bd_cells zynq_ultra_ps_e_0]
